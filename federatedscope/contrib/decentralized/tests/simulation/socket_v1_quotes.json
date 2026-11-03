@@ -1,0 +1,558 @@
+{
+ "graph": [
+  {
+   "ctx": {
+    "auxiliary_present": {
+     "forward": false,
+     "reverse": false
+    },
+    "checksum": false,
+    "event_id": 123,
+    "form": "graph_round",
+    "gross_bytes": {
+     "forward": 0,
+     "reverse": 0
+    },
+    "hi": 2,
+    "identity_count_bound": 0,
+    "identity_width": 1,
+    "lo": 1,
+    "manifest_bytes": {
+     "forward": 301,
+     "reverse": 302
+    },
+    "snapshot_bytes": {
+     "forward": 50331835,
+     "reverse": 50331714
+    }
+   },
+   "d": "reverse",
+   "env": 67108864,
+   "fixed": 941,
+   "kind": "graph",
+   "payload": 4611686018427387904,
+   "payload_big": 4611686018427387904,
+   "reserve": 722
+  },
+  {
+   "ctx": {
+    "auxiliary_present": {
+     "forward": false,
+     "reverse": false
+    },
+    "checksum": true,
+    "event_id": 123,
+    "form": "graph_round",
+    "gross_bytes": {
+     "forward": 0,
+     "reverse": 0
+    },
+    "hi": 10,
+    "identity_count_bound": 64,
+    "identity_width": 3,
+    "lo": 9,
+    "manifest_bytes": {
+     "forward": 309,
+     "reverse": 310
+    },
+    "snapshot_bytes": {
+     "forward": 50331835,
+     "reverse": 50331722
+    }
+   },
+   "d": "reverse",
+   "env": 67108864,
+   "fixed": 2985,
+   "kind": "graph",
+   "payload": 4611686018427387904,
+   "payload_big": 4611686018427387904,
+   "reserve": 738
+  },
+  {
+   "ctx": {
+    "auxiliary_present": {
+     "forward": false,
+     "reverse": false
+    },
+    "checksum": false,
+    "envelope_bytes": 536870912,
+    "event_id": 0,
+    "form": "graph_round",
+    "gross_bytes": {
+     "forward": 101661258,
+     "reverse": 135554034
+    },
+    "hi": 10,
+    "identity_count_bound": 64,
+    "identity_width": 0,
+    "lo": 3,
+    "manifest_bytes": {
+     "forward": 303,
+     "reverse": 310
+    },
+    "snapshot_bytes": {
+     "forward": 50331712,
+     "reverse": 50331722
+    }
+   },
+   "d": "reverse",
+   "env": 536870912,
+   "fixed": 557,
+   "kind": "graph",
+   "payload": 67109872,
+   "payload_big": 4611686018427387904,
+   "reserve": 722
+  },
+  {
+   "ctx": {
+    "auxiliary_present": {
+     "forward": true,
+     "reverse": true
+    },
+    "checksum": false,
+    "event_id": 7,
+    "form": "graph_round",
+    "gross_bytes": {
+     "forward": 0,
+     "reverse": 0
+    },
+    "hi": 2,
+    "identity_count_bound": 200,
+    "identity_width": 0,
+    "lo": 1,
+    "manifest_bytes": {
+     "forward": 301,
+     "reverse": 302
+    },
+    "snapshot_bytes": {
+     "forward": 50331719,
+     "reverse": 50331714
+    }
+   },
+   "d": "reverse",
+   "env": 67108864,
+   "fixed": 553,
+   "kind": "graph",
+   "payload": 4611686018427387904,
+   "payload_big": 4611686018427387904,
+   "reserve": 718
+  },
+  {
+   "ctx": {
+    "auxiliary_present": {
+     "forward": true,
+     "reverse": true
+    },
+    "checksum": true,
+    "envelope_bytes": 536870912,
+    "event_id": 123,
+    "form": "graph_round",
+    "gross_bytes": {
+     "forward": 101661258,
+     "reverse": 135554034
+    },
+    "hi": 2,
+    "identity_count_bound": 64,
+    "identity_width": 3,
+    "lo": 1,
+    "manifest_bytes": {
+     "forward": 301,
+     "reverse": 302
+    },
+    "snapshot_bytes": {
+     "forward": 50331835,
+     "reverse": 50331714
+    }
+   },
+   "d": "forward",
+   "env": 536870912,
+   "fixed": 446,
+   "kind": "graph",
+   "payload": 50332305,
+   "payload_big": 4611686018427387904,
+   "reserve": 426
+  },
+  {
+   "ctx": {
+    "auxiliary_present": {
+     "forward": true,
+     "reverse": true
+    },
+    "checksum": true,
+    "event_id": 123,
+    "form": "graph_round",
+    "gross_bytes": {
+     "forward": 101661258,
+     "reverse": 135554034
+    },
+    "hi": 10,
+    "identity_count_bound": 64,
+    "identity_width": 0,
+    "lo": 3,
+    "manifest_bytes": {
+     "forward": 303,
+     "reverse": 310
+    },
+    "snapshot_bytes": {
+     "forward": 50331835,
+     "reverse": 50331722
+    }
+   },
+   "d": "reverse",
+   "env": 67108864,
+   "fixed": 561,
+   "kind": "graph",
+   "payload": 4611686018427387904,
+   "payload_big": 4611686018427387904,
+   "reserve": 738
+  },
+  {
+   "ctx": {
+    "auxiliary_present": {
+     "forward": false,
+     "reverse": false
+    },
+    "checksum": true,
+    "event_id": 0,
+    "form": "graph_round",
+    "gross_bytes": {
+     "forward": 0,
+     "reverse": 0
+    },
+    "hi": 2,
+    "identity_count_bound": 0,
+    "identity_width": 0,
+    "lo": 1,
+    "manifest_bytes": {
+     "forward": 301,
+     "reverse": 302
+    },
+    "snapshot_bytes": {
+     "forward": 50331712,
+     "reverse": 50331714
+    }
+   },
+   "d": "forward",
+   "env": 67108864,
+   "fixed": 440,
+   "kind": "graph",
+   "payload": 4611686018427387904,
+   "payload_big": 4611686018427387904,
+   "reserve": 424
+  }
+ ],
+ "pair": [
+  {
+   "ctx": {
+    "ack_bytes": {
+     "forward": 61,
+     "reverse": 61
+    },
+    "auxiliary_present": {
+     "forward": true,
+     "reverse": false
+    },
+    "checksum": true,
+    "event_id": 7,
+    "gross_bytes": {
+     "forward": 101661258,
+     "reverse": 135554034
+    },
+    "hi": 10,
+    "identity_count_bound": 0,
+    "identity_width": 1,
+    "lo": 9,
+    "manifest_bytes": {
+     "forward": 909,
+     "reverse": 1110
+    }
+   },
+   "d": "forward",
+   "env": 67108864,
+   "fixed": 1725,
+   "kind": "pair",
+   "payload_101000000_200": 4611686018427387904,
+   "payload_1_0": 68,
+   "payload_40000000_64": 40000067,
+   "payload_600000000_200": 4611686018427387904,
+   "payload_6013_1": 6080,
+   "reserve": 408
+  },
+  {
+   "ctx": {
+    "ack_bytes": {
+     "forward": 61,
+     "reverse": 61
+    },
+    "auxiliary_present": {
+     "forward": false,
+     "reverse": true
+    },
+    "checksum": true,
+    "event_id": 0,
+    "gross_bytes": null,
+    "hi": 10,
+    "identity_count_bound": 200,
+    "identity_width": 1,
+    "lo": 3,
+    "manifest_bytes": {
+     "forward": 903,
+     "reverse": 1110
+    }
+   },
+   "d": "reverse",
+   "env": 67108864,
+   "fixed": 2298,
+   "kind": "pair",
+   "payload_101000000_200": 4611686018427387904,
+   "payload_1_0": 2950,
+   "payload_40000000_64": 53336970,
+   "payload_600000000_200": 4611686018427387904,
+   "payload_6013_1": 10978,
+   "reserve": 714
+  },
+  {
+   "ctx": {
+    "ack_bytes": {
+     "forward": 61,
+     "reverse": 61
+    },
+    "auxiliary_present": {
+     "forward": false,
+     "reverse": true
+    },
+    "checksum": true,
+    "event_id": 98765,
+    "gross_bytes": null,
+    "hi": 10,
+    "identity_count_bound": 64,
+    "identity_width": 1,
+    "lo": 9,
+    "manifest_bytes": {
+     "forward": 909,
+     "reverse": 1110
+    }
+   },
+   "d": "reverse",
+   "env": 67108864,
+   "fixed": 2310,
+   "kind": "pair",
+   "payload_101000000_200": 4611686018427387904,
+   "payload_1_0": 1874,
+   "payload_40000000_64": 53335894,
+   "payload_600000000_200": 4611686018427387904,
+   "payload_6013_1": 9902,
+   "reserve": 722
+  },
+  {
+   "ctx": {
+    "ack_bytes": {
+     "forward": 61,
+     "reverse": 61
+    },
+    "auxiliary_present": {
+     "forward": false,
+     "reverse": true
+    },
+    "checksum": false,
+    "envelope_bytes": 536870912,
+    "event_id": 123,
+    "gross_bytes": {
+     "forward": 101661258,
+     "reverse": 135554034
+    },
+    "hi": 10,
+    "identity_count_bound": 0,
+    "identity_width": 0,
+    "lo": 3,
+    "manifest_bytes": {
+     "forward": 903,
+     "reverse": 1110
+    }
+   },
+   "d": "forward",
+   "env": 536870912,
+   "fixed": 1729,
+   "kind": "pair",
+   "payload_101000000_200": 101000069,
+   "payload_1_0": 70,
+   "payload_40000000_64": 40000069,
+   "payload_600000000_200": 4611686018427387904,
+   "payload_6013_1": 6082,
+   "reserve": 406
+  },
+  {
+   "ctx": {
+    "ack_bytes": {
+     "forward": 61,
+     "reverse": 61
+    },
+    "auxiliary_present": {
+     "forward": true,
+     "reverse": false
+    },
+    "checksum": true,
+    "event_id": 7,
+    "gross_bytes": null,
+    "hi": 2,
+    "identity_count_bound": 0,
+    "identity_width": 3,
+    "lo": 1,
+    "manifest_bytes": {
+     "forward": 901,
+     "reverse": 1102
+    }
+   },
+   "d": "reverse",
+   "env": 67108864,
+   "fixed": 2284,
+   "kind": "pair",
+   "payload_101000000_200": 4611686018427387904,
+   "payload_1_0": 1324,
+   "payload_40000000_64": 53336024,
+   "payload_600000000_200": 4611686018427387904,
+   "payload_6013_1": 9360,
+   "reserve": 710
+  },
+  {
+   "ctx": {
+    "ack_bytes": {
+     "forward": 61,
+     "reverse": 61
+    },
+    "auxiliary_present": {
+     "forward": false,
+     "reverse": true
+    },
+    "checksum": true,
+    "event_id": 123,
+    "gross_bytes": null,
+    "hi": 2,
+    "identity_count_bound": 64,
+    "identity_width": 0,
+    "lo": 1,
+    "manifest_bytes": {
+     "forward": 901,
+     "reverse": 1102
+    }
+   },
+   "d": "forward",
+   "env": 67108864,
+   "fixed": 1710,
+   "kind": "pair",
+   "payload_101000000_200": 4611686018427387904,
+   "payload_1_0": 70,
+   "payload_40000000_64": 40000069,
+   "payload_600000000_200": 4611686018427387904,
+   "payload_6013_1": 6082,
+   "reserve": 410
+  },
+  {
+   "ctx": {
+    "ack_bytes": {
+     "forward": 61,
+     "reverse": 61
+    },
+    "auxiliary_present": {
+     "forward": false,
+     "reverse": true
+    },
+    "checksum": true,
+    "envelope_bytes": 536870912,
+    "event_id": 98765,
+    "gross_bytes": {
+     "forward": 101661258,
+     "reverse": 135554034
+    },
+    "hi": 10,
+    "identity_count_bound": 0,
+    "identity_width": 3,
+    "lo": 9,
+    "manifest_bytes": {
+     "forward": 909,
+     "reverse": 1110
+    }
+   },
+   "d": "reverse",
+   "env": 536870912,
+   "fixed": 2310,
+   "kind": "pair",
+   "payload_101000000_200": 134672302,
+   "payload_1_0": 1366,
+   "payload_40000000_64": 53336070,
+   "payload_600000000_200": 4611686018427387904,
+   "payload_6013_1": 9402,
+   "reserve": 722
+  },
+  {
+   "ctx": {
+    "ack_bytes": {
+     "forward": 61,
+     "reverse": 61
+    },
+    "auxiliary_present": {
+     "forward": false,
+     "reverse": true
+    },
+    "checksum": true,
+    "envelope_bytes": 536870912,
+    "event_id": 98765,
+    "gross_bytes": {
+     "forward": 101661258,
+     "reverse": 135554034
+    },
+    "hi": 2,
+    "identity_count_bound": 64,
+    "identity_width": 1,
+    "lo": 1,
+    "manifest_bytes": {
+     "forward": 901,
+     "reverse": 1102
+    }
+   },
+   "d": "forward",
+   "env": 536870912,
+   "fixed": 1736,
+   "kind": "pair",
+   "payload_101000000_200": 101000071,
+   "payload_1_0": 72,
+   "payload_40000000_64": 40000071,
+   "payload_600000000_200": 4611686018427387904,
+   "payload_6013_1": 6084,
+   "reserve": 412
+  },
+  {
+   "ctx": {
+    "ack_bytes": {
+     "forward": 61,
+     "reverse": 61
+    },
+    "auxiliary_present": {
+     "forward": false,
+     "reverse": true
+    },
+    "checksum": true,
+    "event_id": 0,
+    "gross_bytes": null,
+    "hi": 2,
+    "identity_count_bound": 0,
+    "identity_width": 0,
+    "lo": 1,
+    "manifest_bytes": {
+     "forward": 901,
+     "reverse": 1102
+    }
+   },
+   "d": "forward",
+   "env": 67108864,
+   "fixed": 1700,
+   "kind": "pair",
+   "payload_101000000_200": 4611686018427387904,
+   "payload_1_0": 68,
+   "payload_40000000_64": 40000067,
+   "payload_600000000_200": 4611686018427387904,
+   "payload_6013_1": 6080,
+   "reserve": 408
+  }
+ ]
+}

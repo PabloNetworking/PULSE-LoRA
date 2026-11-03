@@ -1,0 +1,32 @@
+PULSE-LoRA
+==========
+
+This repository contains components of FederatedScope (v0.3.0) and its
+FederatedScope-LLM extension, distributed under the Apache License,
+Version 2.0. See the LICENSE file for the full license text.
+
+    FederatedScope
+    Copyright 2022 Alibaba Group Holding Limited
+    https://github.com/alibaba/FederatedScope
+
+The files under `federatedscope/core/`, `federatedscope/nlp/`,
+`federatedscope/register.py` and the `__init__.py` files of
+`federatedscope/contrib/` come from that project and keep its copyright and
+license, some with modifications. The additions in this repository are
+released under the same license. They include:
+
+  * `federatedscope/contrib/decentralized/`: the decentralized runtime, the
+    PULSE-LoRA method, the Dec-LoRA and TAD-LoRA baselines, the scenario
+    simulation and their tests.
+  * `federatedscope/glue/`: GLUE data loading and DeBERTa model building.
+  * `federatedscope/contrib/trainer/` and
+    `federatedscope/contrib/configs/cfg_decentralized.py`.
+  * `federatedscope/core/configs/cfg_glue.py`.
+  * `scripts/` and `scenarios/`.
+
+Dec-LoRA and TAD-LoRA are included as comparison baselines.
+
+Not redistributed
+-----------------
+  * Datasets (GLUE) and pretrained models are obtained separately and are
+    subject to their own licenses. See data/README.md.

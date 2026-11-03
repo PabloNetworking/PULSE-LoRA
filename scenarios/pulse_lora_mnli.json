@@ -1,0 +1,6538 @@
+{
+  "adapter": null,
+  "adapter_rank": 4,
+  "cfg_overrides": {
+    "criterion.type": "CrossEntropyLoss",
+    "data.root": "data/",
+    "data.splits": [
+      0.9,
+      0.1
+    ],
+    "data.splitter": "iid",
+    "data.type": "mnli@glue",
+    "dataloader.batch_size": 32,
+    "dataloader.shuffle": true,
+    "decentralized.auxiliary_state.policy": "local",
+    "decentralized.comparison.gamma": 0.5,
+    "decentralized.comparison.profile": "common_study",
+    "decentralized.execution.interaction": "pairwise_session",
+    "decentralized.execution.local_steps": 10,
+    "decentralized.methods.pulse_lora.component_seed": 1234,
+    "decentralized.methods.pulse_lora.controller": "fixed",
+    "decentralized.methods.pulse_lora.exploration_fraction": 0.25,
+    "decentralized.methods.pulse_lora.initial_rank": 200,
+    "decentralized.methods.pulse_lora.r_max": 200,
+    "decentralized.methods.pulse_lora.rank_min": 2,
+    "decentralized.methods.pulse_lora.selector": "local_update",
+    "decentralized.transport.envelope_bytes": 536870912,
+    "eval.count_flops": false,
+    "glue.adapter.args": [
+      {
+        "adapter_method": "lora",
+        "adapter_package": "peft",
+        "lora_alpha": 400,
+        "lora_dropout": 0.05,
+        "r": 200,
+        "target_modules": [
+          "attention.self.in_proj",
+          "attention.output.dense",
+          "intermediate.dense",
+          "output.dense"
+        ]
+      }
+    ],
+    "glue.adapter.hetero_strategy": "homo",
+    "glue.adapter.max_rank": 200,
+    "glue.adapter.use": true,
+    "glue.max_length": 128,
+    "glue.retry_on_nan_loss": true,
+    "glue.task_name": "mnli",
+    "model.out_channels": 3,
+    "model.task": "SequenceClassification",
+    "model.type": "models/deberta-large@huggingface_llm",
+    "train.batch_or_epoch": "batch",
+    "train.local_update_steps": 10,
+    "train.optimizer.lr": 5e-05,
+    "train.optimizer.type": "AdamW",
+    "train.scheduler.type": "LinearLR",
+    "trainer.type": "gluedecentralizedtrainer",
+    "use_gpu": false
+  },
+  "construction": {
+    "mode": "common_canonical_v1",
+    "model_init_seed": 31001
+  },
+  "data": "federatedscope.contrib.decentralized.simulation.glue_data.glue_partition",
+  "data_partition": {
+    "seed": 31,
+    "splitter": "label_stratified_round_robin_v1"
+  },
+  "method": "pulse_lora",
+  "peer_overrides": {
+    "1": {
+      "decentralized.methods.pulse_lora.initial_rank": 64
+    },
+    "10": {
+      "decentralized.methods.pulse_lora.initial_rank": 120
+    },
+    "2": {
+      "decentralized.methods.pulse_lora.initial_rank": 64
+    },
+    "3": {
+      "decentralized.methods.pulse_lora.initial_rank": 150
+    },
+    "4": {
+      "decentralized.methods.pulse_lora.initial_rank": 150
+    },
+    "5": {
+      "decentralized.methods.pulse_lora.initial_rank": 120
+    },
+    "9": {
+      "decentralized.methods.pulse_lora.initial_rank": 120
+    }
+  },
+  "peer_seed_base": 0,
+  "peers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "readout_schedule": {
+    "every_frames": 5,
+    "holdout": {
+      "count": 2000,
+      "rule": "label_stratified_hash_v1",
+      "seed": 39031,
+      "source": "train"
+    },
+    "initial": true
+  },
+  "scenario_version": 1,
+  "seed": 31,
+  "trace": {
+    "duration_unit": "ms",
+    "frames": [
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              6
+            ],
+            "goodput_forward": 821387184,
+            "goodput_reverse": 1081482592,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              8
+            ],
+            "goodput_forward": 1443285384,
+            "goodput_reverse": 765954600,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              7
+            ],
+            "goodput_forward": 1087046080,
+            "goodput_reverse": 839442176,
+            "transport": "direct"
+          }
+        ],
+        "index": 0,
+        "time": 0
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              7
+            ],
+            "goodput_forward": 840662328,
+            "goodput_reverse": 1535643448,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              6
+            ],
+            "goodput_forward": 575509312,
+            "goodput_reverse": 1647360192,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              6
+            ],
+            "goodput_forward": 626511888,
+            "goodput_reverse": 1656932600,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              8
+            ],
+            "goodput_forward": 550291256,
+            "goodput_reverse": 856588696,
+            "transport": "direct"
+          }
+        ],
+        "index": 1,
+        "time": 1000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              5
+            ],
+            "goodput_forward": 1437035616,
+            "goodput_reverse": 1544872712,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              6
+            ],
+            "goodput_forward": 750077808,
+            "goodput_reverse": 1007209480,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              9,
+              10
+            ],
+            "goodput_forward": 700048824,
+            "goodput_reverse": 1343743024,
+            "transport": "direct"
+          }
+        ],
+        "index": 2,
+        "time": 2000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              4
+            ],
+            "goodput_forward": 1286903728,
+            "goodput_reverse": 1359076392,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              9
+            ],
+            "goodput_forward": 905574248,
+            "goodput_reverse": 1561815520,
+            "transport": "direct"
+          }
+        ],
+        "index": 3,
+        "time": 3000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              4
+            ],
+            "goodput_forward": 650123904,
+            "goodput_reverse": 1117049200,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              5
+            ],
+            "goodput_forward": 645025288,
+            "goodput_reverse": 1896891624,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              5
+            ],
+            "goodput_forward": 945343440,
+            "goodput_reverse": 790410592,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              9
+            ],
+            "goodput_forward": 1223252056,
+            "goodput_reverse": 1582514192,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              10
+            ],
+            "goodput_forward": 591360208,
+            "goodput_reverse": 1870262816,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              9
+            ],
+            "goodput_forward": 801672376,
+            "goodput_reverse": 783771504,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              9,
+              10
+            ],
+            "goodput_forward": 673877312,
+            "goodput_reverse": 1643200544,
+            "transport": "direct"
+          }
+        ],
+        "index": 4,
+        "time": 4000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              3
+            ],
+            "goodput_forward": 661576712,
+            "goodput_reverse": 1343897232,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              7
+            ],
+            "goodput_forward": 1302062336,
+            "goodput_reverse": 1665254824,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              10
+            ],
+            "goodput_forward": 793868424,
+            "goodput_reverse": 1945896576,
+            "transport": "direct"
+          }
+        ],
+        "index": 5,
+        "time": 5000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              5
+            ],
+            "goodput_forward": 1099482040,
+            "goodput_reverse": 1688025352,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              8
+            ],
+            "goodput_forward": 634112272,
+            "goodput_reverse": 1126787944,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              7
+            ],
+            "goodput_forward": 1002646240,
+            "goodput_reverse": 1578737736,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              9
+            ],
+            "goodput_forward": 1277160256,
+            "goodput_reverse": 1723909144,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              10
+            ],
+            "goodput_forward": 1289576552,
+            "goodput_reverse": 1836403336,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              9
+            ],
+            "goodput_forward": 1326076840,
+            "goodput_reverse": 1207827616,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              10
+            ],
+            "goodput_forward": 1248691400,
+            "goodput_reverse": 1690107032,
+            "transport": "direct"
+          }
+        ],
+        "index": 6,
+        "time": 6000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              4
+            ],
+            "goodput_forward": 1149825632,
+            "goodput_reverse": 1207149424,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              6
+            ],
+            "goodput_forward": 1361983920,
+            "goodput_reverse": 1011548032,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              7
+            ],
+            "goodput_forward": 640876792,
+            "goodput_reverse": 1285475840,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              6
+            ],
+            "goodput_forward": 1044463496,
+            "goodput_reverse": 801076704,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              9
+            ],
+            "goodput_forward": 1443951928,
+            "goodput_reverse": 704382056,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              7
+            ],
+            "goodput_forward": 757411928,
+            "goodput_reverse": 760023320,
+            "transport": "direct"
+          }
+        ],
+        "index": 7,
+        "time": 7000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              10
+            ],
+            "goodput_forward": 1287780152,
+            "goodput_reverse": 1179032080,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              9,
+              10
+            ],
+            "goodput_forward": 1342558936,
+            "goodput_reverse": 1722330856,
+            "transport": "direct"
+          }
+        ],
+        "index": 8,
+        "time": 8000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              7
+            ],
+            "goodput_forward": 838823168,
+            "goodput_reverse": 959024120,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              4
+            ],
+            "goodput_forward": 822334664,
+            "goodput_reverse": 918065752,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              9
+            ],
+            "goodput_forward": 1017395392,
+            "goodput_reverse": 1106837488,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              10
+            ],
+            "goodput_forward": 1191498192,
+            "goodput_reverse": 1520617256,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              10
+            ],
+            "goodput_forward": 558955040,
+            "goodput_reverse": 1250340584,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              8
+            ],
+            "goodput_forward": 1424162432,
+            "goodput_reverse": 1407176728,
+            "transport": "direct"
+          }
+        ],
+        "index": 9,
+        "time": 9000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              4
+            ],
+            "goodput_forward": 1163615592,
+            "goodput_reverse": 1764471712,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              10
+            ],
+            "goodput_forward": 1422586328,
+            "goodput_reverse": 789578160,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              9
+            ],
+            "goodput_forward": 1311704520,
+            "goodput_reverse": 1668825928,
+            "transport": "direct"
+          }
+        ],
+        "index": 10,
+        "time": 10000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              9
+            ],
+            "goodput_forward": 949068144,
+            "goodput_reverse": 1147633352,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              7
+            ],
+            "goodput_forward": 751209880,
+            "goodput_reverse": 1610070504,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              8
+            ],
+            "goodput_forward": 587894720,
+            "goodput_reverse": 1919943736,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              10
+            ],
+            "goodput_forward": 1307811360,
+            "goodput_reverse": 1575696344,
+            "transport": "direct"
+          }
+        ],
+        "index": 11,
+        "time": 11000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              6
+            ],
+            "goodput_forward": 1253017792,
+            "goodput_reverse": 1455155976,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              9
+            ],
+            "goodput_forward": 674265840,
+            "goodput_reverse": 1447171608,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              9
+            ],
+            "goodput_forward": 543896800,
+            "goodput_reverse": 1193514936,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              9
+            ],
+            "goodput_forward": 1211652080,
+            "goodput_reverse": 707891320,
+            "transport": "direct"
+          }
+        ],
+        "index": 12,
+        "time": 12000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              2
+            ],
+            "goodput_forward": 1113544096,
+            "goodput_reverse": 1609509976,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              10
+            ],
+            "goodput_forward": 636511592,
+            "goodput_reverse": 1305729416,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              10
+            ],
+            "goodput_forward": 931133136,
+            "goodput_reverse": 1221043392,
+            "transport": "direct"
+          }
+        ],
+        "index": 13,
+        "time": 13000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              2
+            ],
+            "goodput_forward": 1191314248,
+            "goodput_reverse": 1476829208,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              4
+            ],
+            "goodput_forward": 1385322096,
+            "goodput_reverse": 1474475360,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              10
+            ],
+            "goodput_forward": 536082472,
+            "goodput_reverse": 1394353888,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              10
+            ],
+            "goodput_forward": 1317419376,
+            "goodput_reverse": 1677192176,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              6
+            ],
+            "goodput_forward": 1373669608,
+            "goodput_reverse": 1036984432,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              8
+            ],
+            "goodput_forward": 1305311592,
+            "goodput_reverse": 1170928424,
+            "transport": "direct"
+          }
+        ],
+        "index": 14,
+        "time": 14000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              2
+            ],
+            "goodput_forward": 1004682352,
+            "goodput_reverse": 1503342168,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              8
+            ],
+            "goodput_forward": 1439657616,
+            "goodput_reverse": 1422080344,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              9
+            ],
+            "goodput_forward": 903856472,
+            "goodput_reverse": 934245760,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              9,
+              10
+            ],
+            "goodput_forward": 1279552776,
+            "goodput_reverse": 679464448,
+            "transport": "direct"
+          }
+        ],
+        "index": 15,
+        "time": 15000
+      },
+      {
+        "edges": [],
+        "index": 16,
+        "time": 16000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              4
+            ],
+            "goodput_forward": 1407977288,
+            "goodput_reverse": 1922034216,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              4
+            ],
+            "goodput_forward": 1225330336,
+            "goodput_reverse": 1717839600,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              6
+            ],
+            "goodput_forward": 1380101584,
+            "goodput_reverse": 748535480,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              7
+            ],
+            "goodput_forward": 693769760,
+            "goodput_reverse": 732512936,
+            "transport": "direct"
+          }
+        ],
+        "index": 17,
+        "time": 17000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              10
+            ],
+            "goodput_forward": 1186718872,
+            "goodput_reverse": 668347568,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              9
+            ],
+            "goodput_forward": 951030848,
+            "goodput_reverse": 1730805136,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              7
+            ],
+            "goodput_forward": 1009761920,
+            "goodput_reverse": 1639408440,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              10
+            ],
+            "goodput_forward": 735257592,
+            "goodput_reverse": 671438920,
+            "transport": "direct"
+          }
+        ],
+        "index": 18,
+        "time": 18000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              4
+            ],
+            "goodput_forward": 552190312,
+            "goodput_reverse": 1466416712,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              10
+            ],
+            "goodput_forward": 707540624,
+            "goodput_reverse": 1628265992,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              10
+            ],
+            "goodput_forward": 661127552,
+            "goodput_reverse": 791282800,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              10
+            ],
+            "goodput_forward": 961069808,
+            "goodput_reverse": 1196539888,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              9,
+              10
+            ],
+            "goodput_forward": 1370567744,
+            "goodput_reverse": 1845398128,
+            "transport": "direct"
+          }
+        ],
+        "index": 19,
+        "time": 19000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              9
+            ],
+            "goodput_forward": 1132067968,
+            "goodput_reverse": 1136305496,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              7
+            ],
+            "goodput_forward": 1190596736,
+            "goodput_reverse": 1660829704,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              8
+            ],
+            "goodput_forward": 1433713704,
+            "goodput_reverse": 1916936328,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              10
+            ],
+            "goodput_forward": 1406687368,
+            "goodput_reverse": 1118672216,
+            "transport": "direct"
+          }
+        ],
+        "index": 20,
+        "time": 20000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              8
+            ],
+            "goodput_forward": 782415632,
+            "goodput_reverse": 1396042312,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              9
+            ],
+            "goodput_forward": 694141864,
+            "goodput_reverse": 1318275664,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              6
+            ],
+            "goodput_forward": 1277502592,
+            "goodput_reverse": 1765935904,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              8
+            ],
+            "goodput_forward": 584554240,
+            "goodput_reverse": 1070659080,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              9
+            ],
+            "goodput_forward": 778637648,
+            "goodput_reverse": 1483933808,
+            "transport": "direct"
+          }
+        ],
+        "index": 21,
+        "time": 21000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              8
+            ],
+            "goodput_forward": 976330864,
+            "goodput_reverse": 1106815368,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              4
+            ],
+            "goodput_forward": 1244982824,
+            "goodput_reverse": 1089929008,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              8
+            ],
+            "goodput_forward": 992607504,
+            "goodput_reverse": 1661501192,
+            "transport": "direct"
+          }
+        ],
+        "index": 22,
+        "time": 22000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              4
+            ],
+            "goodput_forward": 1226536576,
+            "goodput_reverse": 982899920,
+            "transport": "direct"
+          }
+        ],
+        "index": 23,
+        "time": 23000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              7
+            ],
+            "goodput_forward": 582768712,
+            "goodput_reverse": 1710542016,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              4
+            ],
+            "goodput_forward": 1014787656,
+            "goodput_reverse": 993021992,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              6
+            ],
+            "goodput_forward": 1297784536,
+            "goodput_reverse": 1474528072,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              10
+            ],
+            "goodput_forward": 768918992,
+            "goodput_reverse": 1251294496,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              7
+            ],
+            "goodput_forward": 1209446752,
+            "goodput_reverse": 1200413496,
+            "transport": "direct"
+          }
+        ],
+        "index": 24,
+        "time": 24000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              2
+            ],
+            "goodput_forward": 1371496344,
+            "goodput_reverse": 1614512728,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              6
+            ],
+            "goodput_forward": 974878232,
+            "goodput_reverse": 830135232,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              10
+            ],
+            "goodput_forward": 681182104,
+            "goodput_reverse": 787884672,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              10
+            ],
+            "goodput_forward": 780743488,
+            "goodput_reverse": 1473110376,
+            "transport": "direct"
+          }
+        ],
+        "index": 25,
+        "time": 25000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              2
+            ],
+            "goodput_forward": 1367247296,
+            "goodput_reverse": 1468494064,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              7
+            ],
+            "goodput_forward": 1187580104,
+            "goodput_reverse": 867000472,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              3
+            ],
+            "goodput_forward": 650771000,
+            "goodput_reverse": 972585512,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              7
+            ],
+            "goodput_forward": 875222464,
+            "goodput_reverse": 1074947432,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              8
+            ],
+            "goodput_forward": 675777472,
+            "goodput_reverse": 762507504,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              7
+            ],
+            "goodput_forward": 730753248,
+            "goodput_reverse": 886040544,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              8
+            ],
+            "goodput_forward": 505692056,
+            "goodput_reverse": 1138098080,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              9
+            ],
+            "goodput_forward": 906935600,
+            "goodput_reverse": 1487567832,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              9,
+              10
+            ],
+            "goodput_forward": 843534936,
+            "goodput_reverse": 1058773816,
+            "transport": "direct"
+          }
+        ],
+        "index": 26,
+        "time": 26000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              6
+            ],
+            "goodput_forward": 698150144,
+            "goodput_reverse": 1465753448,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              9
+            ],
+            "goodput_forward": 611455152,
+            "goodput_reverse": 1684482760,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              4
+            ],
+            "goodput_forward": 613612848,
+            "goodput_reverse": 1569137936,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              7
+            ],
+            "goodput_forward": 1017505160,
+            "goodput_reverse": 1875029272,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              8
+            ],
+            "goodput_forward": 694562696,
+            "goodput_reverse": 1062875136,
+            "transport": "direct"
+          }
+        ],
+        "index": 27,
+        "time": 27000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              3
+            ],
+            "goodput_forward": 1300737288,
+            "goodput_reverse": 1269976032,
+            "transport": "direct"
+          }
+        ],
+        "index": 28,
+        "time": 28000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              2
+            ],
+            "goodput_forward": 865743072,
+            "goodput_reverse": 1659553288,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              3
+            ],
+            "goodput_forward": 904609416,
+            "goodput_reverse": 1442803752,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              10
+            ],
+            "goodput_forward": 1240472640,
+            "goodput_reverse": 685954224,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              5
+            ],
+            "goodput_forward": 1075581080,
+            "goodput_reverse": 1737731600,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              8
+            ],
+            "goodput_forward": 600115240,
+            "goodput_reverse": 1346308000,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              10
+            ],
+            "goodput_forward": 660299112,
+            "goodput_reverse": 1803214000,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              10
+            ],
+            "goodput_forward": 1249158400,
+            "goodput_reverse": 1777278224,
+            "transport": "direct"
+          }
+        ],
+        "index": 29,
+        "time": 29000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              3
+            ],
+            "goodput_forward": 791802344,
+            "goodput_reverse": 1040808568,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              9
+            ],
+            "goodput_forward": 669579264,
+            "goodput_reverse": 1159605560,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              5
+            ],
+            "goodput_forward": 1032329216,
+            "goodput_reverse": 846247768,
+            "transport": "direct"
+          }
+        ],
+        "index": 30,
+        "time": 30000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              4
+            ],
+            "goodput_forward": 1455103944,
+            "goodput_reverse": 1056514024,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              5
+            ],
+            "goodput_forward": 1386297640,
+            "goodput_reverse": 816136528,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              3
+            ],
+            "goodput_forward": 1192994280,
+            "goodput_reverse": 1843671712,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              8
+            ],
+            "goodput_forward": 1073828736,
+            "goodput_reverse": 1880465248,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              4
+            ],
+            "goodput_forward": 858281648,
+            "goodput_reverse": 1328227064,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              7
+            ],
+            "goodput_forward": 1350357024,
+            "goodput_reverse": 1742324072,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              9,
+              10
+            ],
+            "goodput_forward": 1299153000,
+            "goodput_reverse": 1903092928,
+            "transport": "direct"
+          }
+        ],
+        "index": 31,
+        "time": 31000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              6
+            ],
+            "goodput_forward": 1401182968,
+            "goodput_reverse": 1680381688,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              7
+            ],
+            "goodput_forward": 1285001160,
+            "goodput_reverse": 953330808,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              8
+            ],
+            "goodput_forward": 1340885864,
+            "goodput_reverse": 1075136696,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              3
+            ],
+            "goodput_forward": 807992840,
+            "goodput_reverse": 1093598632,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              10
+            ],
+            "goodput_forward": 1061718360,
+            "goodput_reverse": 1028999456,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              9
+            ],
+            "goodput_forward": 1089273992,
+            "goodput_reverse": 1617936560,
+            "transport": "direct"
+          }
+        ],
+        "index": 32,
+        "time": 32000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              5
+            ],
+            "goodput_forward": 1000920744,
+            "goodput_reverse": 1039022696,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              4
+            ],
+            "goodput_forward": 653427384,
+            "goodput_reverse": 1048326496,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              7
+            ],
+            "goodput_forward": 956496256,
+            "goodput_reverse": 1769650392,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              9
+            ],
+            "goodput_forward": 881766808,
+            "goodput_reverse": 1553304696,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              9
+            ],
+            "goodput_forward": 647745576,
+            "goodput_reverse": 707730152,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              8
+            ],
+            "goodput_forward": 1138478656,
+            "goodput_reverse": 1743871072,
+            "transport": "direct"
+          }
+        ],
+        "index": 33,
+        "time": 33000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              10
+            ],
+            "goodput_forward": 924298520,
+            "goodput_reverse": 1878987032,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              5
+            ],
+            "goodput_forward": 566274680,
+            "goodput_reverse": 753635232,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              7
+            ],
+            "goodput_forward": 1455153808,
+            "goodput_reverse": 1898738816,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              10
+            ],
+            "goodput_forward": 1154218040,
+            "goodput_reverse": 1249050376,
+            "transport": "direct"
+          }
+        ],
+        "index": 34,
+        "time": 34000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              3
+            ],
+            "goodput_forward": 1146705552,
+            "goodput_reverse": 1628776608,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              10
+            ],
+            "goodput_forward": 1292731944,
+            "goodput_reverse": 833594080,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              8
+            ],
+            "goodput_forward": 656063888,
+            "goodput_reverse": 1748234136,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              9
+            ],
+            "goodput_forward": 1045041952,
+            "goodput_reverse": 1375076624,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              10
+            ],
+            "goodput_forward": 1268938432,
+            "goodput_reverse": 1212948200,
+            "transport": "direct"
+          }
+        ],
+        "index": 35,
+        "time": 35000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              4
+            ],
+            "goodput_forward": 1023279248,
+            "goodput_reverse": 733350408,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              8
+            ],
+            "goodput_forward": 977386024,
+            "goodput_reverse": 833977144,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              5
+            ],
+            "goodput_forward": 764278952,
+            "goodput_reverse": 1102034784,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              8
+            ],
+            "goodput_forward": 929196104,
+            "goodput_reverse": 1719978856,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              9
+            ],
+            "goodput_forward": 1196685696,
+            "goodput_reverse": 1575783624,
+            "transport": "direct"
+          }
+        ],
+        "index": 36,
+        "time": 36000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              4
+            ],
+            "goodput_forward": 512938008,
+            "goodput_reverse": 941828080,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              10
+            ],
+            "goodput_forward": 624946192,
+            "goodput_reverse": 1497410440,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              7
+            ],
+            "goodput_forward": 1078979248,
+            "goodput_reverse": 1602284864,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              8
+            ],
+            "goodput_forward": 958476360,
+            "goodput_reverse": 732826032,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              8
+            ],
+            "goodput_forward": 1347300840,
+            "goodput_reverse": 1266274144,
+            "transport": "direct"
+          }
+        ],
+        "index": 37,
+        "time": 37000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              7
+            ],
+            "goodput_forward": 520715744,
+            "goodput_reverse": 1736910096,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              7
+            ],
+            "goodput_forward": 1172695344,
+            "goodput_reverse": 1713685672,
+            "transport": "direct"
+          }
+        ],
+        "index": 38,
+        "time": 38000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              4
+            ],
+            "goodput_forward": 593291160,
+            "goodput_reverse": 1456964544,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              9
+            ],
+            "goodput_forward": 1220871656,
+            "goodput_reverse": 1308828176,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              4
+            ],
+            "goodput_forward": 655005128,
+            "goodput_reverse": 1329563856,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              5
+            ],
+            "goodput_forward": 638286960,
+            "goodput_reverse": 1175796360,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              6
+            ],
+            "goodput_forward": 1314577992,
+            "goodput_reverse": 1617376448,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              8
+            ],
+            "goodput_forward": 1451951960,
+            "goodput_reverse": 1206448368,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              6
+            ],
+            "goodput_forward": 656807120,
+            "goodput_reverse": 673458400,
+            "transport": "direct"
+          }
+        ],
+        "index": 39,
+        "time": 39000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              6
+            ],
+            "goodput_forward": 716927456,
+            "goodput_reverse": 1071632632,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              6
+            ],
+            "goodput_forward": 516821280,
+            "goodput_reverse": 1803783144,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              6
+            ],
+            "goodput_forward": 781563600,
+            "goodput_reverse": 1060132832,
+            "transport": "direct"
+          }
+        ],
+        "index": 40,
+        "time": 40000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              5
+            ],
+            "goodput_forward": 638251936,
+            "goodput_reverse": 1303681496,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              8
+            ],
+            "goodput_forward": 1326470104,
+            "goodput_reverse": 1575120736,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              3
+            ],
+            "goodput_forward": 758612976,
+            "goodput_reverse": 847072816,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              8
+            ],
+            "goodput_forward": 1453126944,
+            "goodput_reverse": 720296104,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              9
+            ],
+            "goodput_forward": 1417883440,
+            "goodput_reverse": 841235040,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              5
+            ],
+            "goodput_forward": 1427014528,
+            "goodput_reverse": 1604961304,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              10
+            ],
+            "goodput_forward": 998196760,
+            "goodput_reverse": 976291600,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              10
+            ],
+            "goodput_forward": 1257111200,
+            "goodput_reverse": 1931752824,
+            "transport": "direct"
+          }
+        ],
+        "index": 41,
+        "time": 41000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              10
+            ],
+            "goodput_forward": 1141647920,
+            "goodput_reverse": 1249110368,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              10
+            ],
+            "goodput_forward": 1025482304,
+            "goodput_reverse": 1903522960,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              9
+            ],
+            "goodput_forward": 669489376,
+            "goodput_reverse": 1915865960,
+            "transport": "direct"
+          }
+        ],
+        "index": 42,
+        "time": 42000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              8
+            ],
+            "goodput_forward": 557056072,
+            "goodput_reverse": 1051736728,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              8
+            ],
+            "goodput_forward": 579582376,
+            "goodput_reverse": 1822304920,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              7
+            ],
+            "goodput_forward": 937836296,
+            "goodput_reverse": 1508392944,
+            "transport": "direct"
+          }
+        ],
+        "index": 43,
+        "time": 43000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              2
+            ],
+            "goodput_forward": 1449236880,
+            "goodput_reverse": 1525194136,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              7
+            ],
+            "goodput_forward": 1341881760,
+            "goodput_reverse": 1300791144,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              3
+            ],
+            "goodput_forward": 1294717440,
+            "goodput_reverse": 1409857392,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              6
+            ],
+            "goodput_forward": 760618304,
+            "goodput_reverse": 1360517808,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              8
+            ],
+            "goodput_forward": 909944136,
+            "goodput_reverse": 675511496,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              9
+            ],
+            "goodput_forward": 614318648,
+            "goodput_reverse": 968698664,
+            "transport": "direct"
+          }
+        ],
+        "index": 44,
+        "time": 44000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              6
+            ],
+            "goodput_forward": 578105072,
+            "goodput_reverse": 1622214056,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              5
+            ],
+            "goodput_forward": 930124072,
+            "goodput_reverse": 1828688864,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              9
+            ],
+            "goodput_forward": 1416645800,
+            "goodput_reverse": 1558584552,
+            "transport": "direct"
+          }
+        ],
+        "index": 45,
+        "time": 45000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              8
+            ],
+            "goodput_forward": 1361217192,
+            "goodput_reverse": 713759824,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              9
+            ],
+            "goodput_forward": 1040662528,
+            "goodput_reverse": 1835303144,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              5
+            ],
+            "goodput_forward": 1457549008,
+            "goodput_reverse": 1382295584,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              7
+            ],
+            "goodput_forward": 1297846808,
+            "goodput_reverse": 1591707048,
+            "transport": "direct"
+          }
+        ],
+        "index": 46,
+        "time": 46000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              7
+            ],
+            "goodput_forward": 1404929408,
+            "goodput_reverse": 923388312,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              4
+            ],
+            "goodput_forward": 559107696,
+            "goodput_reverse": 1565705624,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              6
+            ],
+            "goodput_forward": 684166432,
+            "goodput_reverse": 1924354952,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              7
+            ],
+            "goodput_forward": 644612632,
+            "goodput_reverse": 1600028152,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              10
+            ],
+            "goodput_forward": 1047820496,
+            "goodput_reverse": 1809764272,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              9
+            ],
+            "goodput_forward": 642171392,
+            "goodput_reverse": 1674639008,
+            "transport": "direct"
+          }
+        ],
+        "index": 47,
+        "time": 47000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              6
+            ],
+            "goodput_forward": 704117680,
+            "goodput_reverse": 1546496656,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              7
+            ],
+            "goodput_forward": 825615656,
+            "goodput_reverse": 680454192,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              10
+            ],
+            "goodput_forward": 1214169368,
+            "goodput_reverse": 1696057808,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              7
+            ],
+            "goodput_forward": 1197918952,
+            "goodput_reverse": 1478829064,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              9
+            ],
+            "goodput_forward": 1197486352,
+            "goodput_reverse": 1893288680,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              9
+            ],
+            "goodput_forward": 1364276864,
+            "goodput_reverse": 741952184,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              9
+            ],
+            "goodput_forward": 1218641632,
+            "goodput_reverse": 1588134832,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              10
+            ],
+            "goodput_forward": 1219766640,
+            "goodput_reverse": 796733136,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              9,
+              10
+            ],
+            "goodput_forward": 1414996992,
+            "goodput_reverse": 970962144,
+            "transport": "direct"
+          }
+        ],
+        "index": 48,
+        "time": 48000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              8
+            ],
+            "goodput_forward": 1014551880,
+            "goodput_reverse": 1314444944,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              4
+            ],
+            "goodput_forward": 1124096608,
+            "goodput_reverse": 1782240400,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              7
+            ],
+            "goodput_forward": 1397744824,
+            "goodput_reverse": 1412198248,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              8
+            ],
+            "goodput_forward": 800946480,
+            "goodput_reverse": 1563011176,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              10
+            ],
+            "goodput_forward": 1126640712,
+            "goodput_reverse": 813343088,
+            "transport": "direct"
+          }
+        ],
+        "index": 49,
+        "time": 49000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              4
+            ],
+            "goodput_forward": 1412548160,
+            "goodput_reverse": 1527480040,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              5
+            ],
+            "goodput_forward": 666451744,
+            "goodput_reverse": 878705504,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              8
+            ],
+            "goodput_forward": 1017045016,
+            "goodput_reverse": 705064808,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              7
+            ],
+            "goodput_forward": 556385448,
+            "goodput_reverse": 1512678336,
+            "transport": "direct"
+          }
+        ],
+        "index": 50,
+        "time": 50000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              10
+            ],
+            "goodput_forward": 959399296,
+            "goodput_reverse": 1803586384,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              10
+            ],
+            "goodput_forward": 1446697848,
+            "goodput_reverse": 1065261560,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              6
+            ],
+            "goodput_forward": 506600496,
+            "goodput_reverse": 1525201216,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              8
+            ],
+            "goodput_forward": 549353184,
+            "goodput_reverse": 1327987088,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              9
+            ],
+            "goodput_forward": 740485464,
+            "goodput_reverse": 1269883368,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              10
+            ],
+            "goodput_forward": 1234959496,
+            "goodput_reverse": 1275887976,
+            "transport": "direct"
+          }
+        ],
+        "index": 51,
+        "time": 51000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              9
+            ],
+            "goodput_forward": 1198215584,
+            "goodput_reverse": 1451359176,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              10
+            ],
+            "goodput_forward": 1088112512,
+            "goodput_reverse": 1074147216,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              5
+            ],
+            "goodput_forward": 1457260888,
+            "goodput_reverse": 1419966024,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              5
+            ],
+            "goodput_forward": 504402952,
+            "goodput_reverse": 980422224,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              9
+            ],
+            "goodput_forward": 1033054928,
+            "goodput_reverse": 1288374112,
+            "transport": "direct"
+          }
+        ],
+        "index": 52,
+        "time": 52000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              4
+            ],
+            "goodput_forward": 1269274384,
+            "goodput_reverse": 1308966280,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              7
+            ],
+            "goodput_forward": 872460888,
+            "goodput_reverse": 1921406064,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              9
+            ],
+            "goodput_forward": 748235744,
+            "goodput_reverse": 704836304,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              9
+            ],
+            "goodput_forward": 1099014728,
+            "goodput_reverse": 1133093376,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              10
+            ],
+            "goodput_forward": 1051683336,
+            "goodput_reverse": 1339833024,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              9,
+              10
+            ],
+            "goodput_forward": 570778664,
+            "goodput_reverse": 1742246664,
+            "transport": "direct"
+          }
+        ],
+        "index": 53,
+        "time": 53000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              3
+            ],
+            "goodput_forward": 1378839544,
+            "goodput_reverse": 1767764728,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              5
+            ],
+            "goodput_forward": 1245729976,
+            "goodput_reverse": 1067293480,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              8
+            ],
+            "goodput_forward": 1369303456,
+            "goodput_reverse": 1094813064,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              9
+            ],
+            "goodput_forward": 822041520,
+            "goodput_reverse": 1319504152,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              8
+            ],
+            "goodput_forward": 1379066528,
+            "goodput_reverse": 1502746664,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              10
+            ],
+            "goodput_forward": 1183576840,
+            "goodput_reverse": 1404878544,
+            "transport": "direct"
+          }
+        ],
+        "index": 54,
+        "time": 54000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              3
+            ],
+            "goodput_forward": 1456870264,
+            "goodput_reverse": 1252604024,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              6
+            ],
+            "goodput_forward": 873732832,
+            "goodput_reverse": 937165256,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              5
+            ],
+            "goodput_forward": 1235765944,
+            "goodput_reverse": 826509152,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              7
+            ],
+            "goodput_forward": 1388791040,
+            "goodput_reverse": 1867166272,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              9
+            ],
+            "goodput_forward": 656647824,
+            "goodput_reverse": 865173392,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              7
+            ],
+            "goodput_forward": 1232481728,
+            "goodput_reverse": 1089190016,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              9
+            ],
+            "goodput_forward": 993775984,
+            "goodput_reverse": 1425081544,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              10
+            ],
+            "goodput_forward": 496635864,
+            "goodput_reverse": 1784457152,
+            "transport": "direct"
+          }
+        ],
+        "index": 55,
+        "time": 55000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              6
+            ],
+            "goodput_forward": 1158240912,
+            "goodput_reverse": 1296338816,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              10
+            ],
+            "goodput_forward": 693804560,
+            "goodput_reverse": 1394622960,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              8
+            ],
+            "goodput_forward": 602776888,
+            "goodput_reverse": 1872893288,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              10
+            ],
+            "goodput_forward": 509858168,
+            "goodput_reverse": 1610696688,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              9
+            ],
+            "goodput_forward": 627453672,
+            "goodput_reverse": 824958480,
+            "transport": "direct"
+          }
+        ],
+        "index": 56,
+        "time": 56000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              2
+            ],
+            "goodput_forward": 1161614040,
+            "goodput_reverse": 796798760,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              6
+            ],
+            "goodput_forward": 1208316488,
+            "goodput_reverse": 1701906328,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              7
+            ],
+            "goodput_forward": 1198478424,
+            "goodput_reverse": 1015457184,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              8
+            ],
+            "goodput_forward": 1029565504,
+            "goodput_reverse": 668193760,
+            "transport": "direct"
+          }
+        ],
+        "index": 57,
+        "time": 57000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              6
+            ],
+            "goodput_forward": 1380975064,
+            "goodput_reverse": 1650538584,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              4
+            ],
+            "goodput_forward": 1089612072,
+            "goodput_reverse": 951545064,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              7
+            ],
+            "goodput_forward": 727486024,
+            "goodput_reverse": 1038491904,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              9
+            ],
+            "goodput_forward": 625278456,
+            "goodput_reverse": 1811647480,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              7
+            ],
+            "goodput_forward": 1163042208,
+            "goodput_reverse": 1673009152,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              10
+            ],
+            "goodput_forward": 1286634264,
+            "goodput_reverse": 1394767784,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              10
+            ],
+            "goodput_forward": 826959760,
+            "goodput_reverse": 1210771056,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              9
+            ],
+            "goodput_forward": 1459660544,
+            "goodput_reverse": 1840471368,
+            "transport": "direct"
+          }
+        ],
+        "index": 58,
+        "time": 58000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              9
+            ],
+            "goodput_forward": 726417152,
+            "goodput_reverse": 1858970224,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              3
+            ],
+            "goodput_forward": 835565696,
+            "goodput_reverse": 1541551576,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              7
+            ],
+            "goodput_forward": 1370278960,
+            "goodput_reverse": 1473488632,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              9
+            ],
+            "goodput_forward": 488129760,
+            "goodput_reverse": 1682560224,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              10
+            ],
+            "goodput_forward": 1302781936,
+            "goodput_reverse": 946011416,
+            "transport": "direct"
+          }
+        ],
+        "index": 59,
+        "time": 59000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              8
+            ],
+            "goodput_forward": 1357280848,
+            "goodput_reverse": 1623405520,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              10
+            ],
+            "goodput_forward": 1171030192,
+            "goodput_reverse": 952719984,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              9
+            ],
+            "goodput_forward": 882134560,
+            "goodput_reverse": 871687400,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              10
+            ],
+            "goodput_forward": 861369544,
+            "goodput_reverse": 708705088,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              9
+            ],
+            "goodput_forward": 507269184,
+            "goodput_reverse": 1288180264,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              10
+            ],
+            "goodput_forward": 945333528,
+            "goodput_reverse": 1539157936,
+            "transport": "direct"
+          }
+        ],
+        "index": 60,
+        "time": 60000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              7
+            ],
+            "goodput_forward": 662247704,
+            "goodput_reverse": 1287801056,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              7
+            ],
+            "goodput_forward": 771900456,
+            "goodput_reverse": 1686248448,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              9
+            ],
+            "goodput_forward": 1388221064,
+            "goodput_reverse": 1678784376,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              8
+            ],
+            "goodput_forward": 783482512,
+            "goodput_reverse": 926451456,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              9
+            ],
+            "goodput_forward": 1022873040,
+            "goodput_reverse": 1053618896,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              9
+            ],
+            "goodput_forward": 954617424,
+            "goodput_reverse": 1664579440,
+            "transport": "direct"
+          }
+        ],
+        "index": 61,
+        "time": 61000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              7
+            ],
+            "goodput_forward": 807337952,
+            "goodput_reverse": 1772621136,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              4
+            ],
+            "goodput_forward": 1184107088,
+            "goodput_reverse": 1792765096,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              8
+            ],
+            "goodput_forward": 1175758464,
+            "goodput_reverse": 682185472,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              10
+            ],
+            "goodput_forward": 1458649504,
+            "goodput_reverse": 734770896,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              5
+            ],
+            "goodput_forward": 556016640,
+            "goodput_reverse": 1738926992,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              6
+            ],
+            "goodput_forward": 1032666872,
+            "goodput_reverse": 1430176784,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              9
+            ],
+            "goodput_forward": 949211696,
+            "goodput_reverse": 1131340008,
+            "transport": "direct"
+          }
+        ],
+        "index": 62,
+        "time": 62000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              2
+            ],
+            "goodput_forward": 1069139144,
+            "goodput_reverse": 1853703456,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              5
+            ],
+            "goodput_forward": 1064967960,
+            "goodput_reverse": 1568775376,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              6
+            ],
+            "goodput_forward": 1416883984,
+            "goodput_reverse": 1340238536,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              9
+            ],
+            "goodput_forward": 1128503464,
+            "goodput_reverse": 921008384,
+            "transport": "direct"
+          }
+        ],
+        "index": 63,
+        "time": 63000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              3
+            ],
+            "goodput_forward": 1376084504,
+            "goodput_reverse": 1520404552,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              4
+            ],
+            "goodput_forward": 994744440,
+            "goodput_reverse": 1208334856,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              10
+            ],
+            "goodput_forward": 1290589192,
+            "goodput_reverse": 1575540784,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              8
+            ],
+            "goodput_forward": 772850736,
+            "goodput_reverse": 1027559968,
+            "transport": "direct"
+          }
+        ],
+        "index": 64,
+        "time": 64000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              8
+            ],
+            "goodput_forward": 1304626400,
+            "goodput_reverse": 931402784,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              10
+            ],
+            "goodput_forward": 704081416,
+            "goodput_reverse": 1906719312,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              5
+            ],
+            "goodput_forward": 1422365352,
+            "goodput_reverse": 1243726272,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              9
+            ],
+            "goodput_forward": 1341394408,
+            "goodput_reverse": 1683874880,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              9
+            ],
+            "goodput_forward": 945563080,
+            "goodput_reverse": 1948053104,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              9,
+              10
+            ],
+            "goodput_forward": 1051050336,
+            "goodput_reverse": 1598676168,
+            "transport": "direct"
+          }
+        ],
+        "index": 65,
+        "time": 65000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              9
+            ],
+            "goodput_forward": 1222461936,
+            "goodput_reverse": 912444632,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              8
+            ],
+            "goodput_forward": 1000871720,
+            "goodput_reverse": 1345152744,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              9
+            ],
+            "goodput_forward": 1311320368,
+            "goodput_reverse": 953339960,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              7
+            ],
+            "goodput_forward": 1333989288,
+            "goodput_reverse": 770346776,
+            "transport": "direct"
+          }
+        ],
+        "index": 66,
+        "time": 66000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              2
+            ],
+            "goodput_forward": 859974792,
+            "goodput_reverse": 1245861240,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              8
+            ],
+            "goodput_forward": 1219115792,
+            "goodput_reverse": 1054376064,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              9
+            ],
+            "goodput_forward": 855940928,
+            "goodput_reverse": 1472573080,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              8
+            ],
+            "goodput_forward": 1195190744,
+            "goodput_reverse": 1450709856,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              8
+            ],
+            "goodput_forward": 588765232,
+            "goodput_reverse": 1520692440,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              8
+            ],
+            "goodput_forward": 755677408,
+            "goodput_reverse": 1355393416,
+            "transport": "direct"
+          }
+        ],
+        "index": 67,
+        "time": 67000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              5
+            ],
+            "goodput_forward": 1172275464,
+            "goodput_reverse": 777125944,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              9
+            ],
+            "goodput_forward": 1395170904,
+            "goodput_reverse": 1949518928,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              7
+            ],
+            "goodput_forward": 733356312,
+            "goodput_reverse": 1044946680,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              6
+            ],
+            "goodput_forward": 909355952,
+            "goodput_reverse": 1642122872,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              7
+            ],
+            "goodput_forward": 976588344,
+            "goodput_reverse": 1442641992,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              7
+            ],
+            "goodput_forward": 1234162304,
+            "goodput_reverse": 1189270816,
+            "transport": "direct"
+          }
+        ],
+        "index": 68,
+        "time": 68000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              5
+            ],
+            "goodput_forward": 1368407784,
+            "goodput_reverse": 1182675376,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              8
+            ],
+            "goodput_forward": 1009210640,
+            "goodput_reverse": 1699673816,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              9
+            ],
+            "goodput_forward": 1204364168,
+            "goodput_reverse": 1646665784,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              10
+            ],
+            "goodput_forward": 1022506176,
+            "goodput_reverse": 1649687904,
+            "transport": "direct"
+          }
+        ],
+        "index": 69,
+        "time": 69000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              3
+            ],
+            "goodput_forward": 1293066552,
+            "goodput_reverse": 1061980920,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              3
+            ],
+            "goodput_forward": 1263795920,
+            "goodput_reverse": 1799894800,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              8
+            ],
+            "goodput_forward": 1219245128,
+            "goodput_reverse": 810761320,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              9
+            ],
+            "goodput_forward": 929387968,
+            "goodput_reverse": 906172456,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              10
+            ],
+            "goodput_forward": 1166930720,
+            "goodput_reverse": 1408949696,
+            "transport": "direct"
+          }
+        ],
+        "index": 70,
+        "time": 70000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              4
+            ],
+            "goodput_forward": 733794328,
+            "goodput_reverse": 1471442760,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              6
+            ],
+            "goodput_forward": 627187248,
+            "goodput_reverse": 1098596072,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              3
+            ],
+            "goodput_forward": 1160787392,
+            "goodput_reverse": 1589609040,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              9
+            ],
+            "goodput_forward": 1383289256,
+            "goodput_reverse": 1250937768,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              10
+            ],
+            "goodput_forward": 756667288,
+            "goodput_reverse": 1628586608,
+            "transport": "direct"
+          }
+        ],
+        "index": 71,
+        "time": 71000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              8
+            ],
+            "goodput_forward": 634529616,
+            "goodput_reverse": 1502941120,
+            "transport": "direct"
+          }
+        ],
+        "index": 72,
+        "time": 72000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              6
+            ],
+            "goodput_forward": 558432512,
+            "goodput_reverse": 1127343192,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              7
+            ],
+            "goodput_forward": 1037949472,
+            "goodput_reverse": 896418160,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              8
+            ],
+            "goodput_forward": 885638320,
+            "goodput_reverse": 655881120,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              6
+            ],
+            "goodput_forward": 593354360,
+            "goodput_reverse": 1586176776,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              9
+            ],
+            "goodput_forward": 1067228208,
+            "goodput_reverse": 1191008936,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              7
+            ],
+            "goodput_forward": 664678328,
+            "goodput_reverse": 1393732240,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              8
+            ],
+            "goodput_forward": 565160424,
+            "goodput_reverse": 1056847864,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              9
+            ],
+            "goodput_forward": 610411360,
+            "goodput_reverse": 1041309128,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              8
+            ],
+            "goodput_forward": 1324914888,
+            "goodput_reverse": 665967816,
+            "transport": "direct"
+          }
+        ],
+        "index": 73,
+        "time": 73000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              6
+            ],
+            "goodput_forward": 964316640,
+            "goodput_reverse": 1328480984,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              7
+            ],
+            "goodput_forward": 560729688,
+            "goodput_reverse": 1058988264,
+            "transport": "direct"
+          }
+        ],
+        "index": 74,
+        "time": 74000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              5
+            ],
+            "goodput_forward": 645856456,
+            "goodput_reverse": 721191192,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              3
+            ],
+            "goodput_forward": 1059721248,
+            "goodput_reverse": 795975520,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              10
+            ],
+            "goodput_forward": 546838808,
+            "goodput_reverse": 1567891840,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              10
+            ],
+            "goodput_forward": 1263696016,
+            "goodput_reverse": 900462656,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              10
+            ],
+            "goodput_forward": 778573064,
+            "goodput_reverse": 869753680,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              8
+            ],
+            "goodput_forward": 1443041368,
+            "goodput_reverse": 1454429008,
+            "transport": "direct"
+          }
+        ],
+        "index": 75,
+        "time": 75000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              5
+            ],
+            "goodput_forward": 496804008,
+            "goodput_reverse": 1669998640,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              10
+            ],
+            "goodput_forward": 988928536,
+            "goodput_reverse": 870113480,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              6
+            ],
+            "goodput_forward": 1211648912,
+            "goodput_reverse": 1927129232,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              9
+            ],
+            "goodput_forward": 1145048800,
+            "goodput_reverse": 1856030136,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              8
+            ],
+            "goodput_forward": 560815888,
+            "goodput_reverse": 1057772848,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              9
+            ],
+            "goodput_forward": 1039765784,
+            "goodput_reverse": 674400296,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              9
+            ],
+            "goodput_forward": 878036456,
+            "goodput_reverse": 1724228976,
+            "transport": "direct"
+          }
+        ],
+        "index": 76,
+        "time": 76000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              5
+            ],
+            "goodput_forward": 1017934192,
+            "goodput_reverse": 703707176,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              10
+            ],
+            "goodput_forward": 507280072,
+            "goodput_reverse": 814731640,
+            "transport": "direct"
+          }
+        ],
+        "index": 77,
+        "time": 77000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              3
+            ],
+            "goodput_forward": 902870112,
+            "goodput_reverse": 1601174216,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              9
+            ],
+            "goodput_forward": 1045957240,
+            "goodput_reverse": 1912656752,
+            "transport": "direct"
+          }
+        ],
+        "index": 78,
+        "time": 78000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              4
+            ],
+            "goodput_forward": 1236418624,
+            "goodput_reverse": 833561160,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              10
+            ],
+            "goodput_forward": 1177696808,
+            "goodput_reverse": 1433304960,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              4
+            ],
+            "goodput_forward": 1276460584,
+            "goodput_reverse": 878642296,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              5
+            ],
+            "goodput_forward": 1282480808,
+            "goodput_reverse": 981822840,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              8
+            ],
+            "goodput_forward": 825515992,
+            "goodput_reverse": 1432295608,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              9
+            ],
+            "goodput_forward": 953491232,
+            "goodput_reverse": 1055651920,
+            "transport": "direct"
+          }
+        ],
+        "index": 79,
+        "time": 79000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              5
+            ],
+            "goodput_forward": 715665944,
+            "goodput_reverse": 1605594056,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              9
+            ],
+            "goodput_forward": 1452886520,
+            "goodput_reverse": 810247272,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              8
+            ],
+            "goodput_forward": 522993072,
+            "goodput_reverse": 1518214064,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              9
+            ],
+            "goodput_forward": 1163553336,
+            "goodput_reverse": 812844152,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              10
+            ],
+            "goodput_forward": 714632536,
+            "goodput_reverse": 664499864,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              9
+            ],
+            "goodput_forward": 1460765312,
+            "goodput_reverse": 1287688536,
+            "transport": "direct"
+          }
+        ],
+        "index": 80,
+        "time": 80000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              8
+            ],
+            "goodput_forward": 961533896,
+            "goodput_reverse": 668782440,
+            "transport": "direct"
+          }
+        ],
+        "index": 81,
+        "time": 81000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              2
+            ],
+            "goodput_forward": 499454128,
+            "goodput_reverse": 1885254128,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              3
+            ],
+            "goodput_forward": 671752424,
+            "goodput_reverse": 1146517240,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              6
+            ],
+            "goodput_forward": 502216920,
+            "goodput_reverse": 1225306024,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              10
+            ],
+            "goodput_forward": 1229015456,
+            "goodput_reverse": 827449152,
+            "transport": "direct"
+          }
+        ],
+        "index": 82,
+        "time": 82000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              8
+            ],
+            "goodput_forward": 1181760592,
+            "goodput_reverse": 1546052800,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              10
+            ],
+            "goodput_forward": 832904448,
+            "goodput_reverse": 1655612536,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              8
+            ],
+            "goodput_forward": 490151592,
+            "goodput_reverse": 1566699568,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              10
+            ],
+            "goodput_forward": 1010498336,
+            "goodput_reverse": 1625248872,
+            "transport": "direct"
+          }
+        ],
+        "index": 83,
+        "time": 83000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              2
+            ],
+            "goodput_forward": 575922880,
+            "goodput_reverse": 943746560,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              5
+            ],
+            "goodput_forward": 761229144,
+            "goodput_reverse": 1789312888,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              8
+            ],
+            "goodput_forward": 763530144,
+            "goodput_reverse": 1521919232,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              8
+            ],
+            "goodput_forward": 1279948952,
+            "goodput_reverse": 868199024,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              10
+            ],
+            "goodput_forward": 766978208,
+            "goodput_reverse": 1709976576,
+            "transport": "direct"
+          }
+        ],
+        "index": 84,
+        "time": 84000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              6
+            ],
+            "goodput_forward": 1419913648,
+            "goodput_reverse": 673315616,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              8
+            ],
+            "goodput_forward": 1002644096,
+            "goodput_reverse": 1438536832,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              9
+            ],
+            "goodput_forward": 1080610744,
+            "goodput_reverse": 1503666712,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              10
+            ],
+            "goodput_forward": 563328776,
+            "goodput_reverse": 935010424,
+            "transport": "direct"
+          }
+        ],
+        "index": 85,
+        "time": 85000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              7
+            ],
+            "goodput_forward": 1018058296,
+            "goodput_reverse": 759222976,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              8
+            ],
+            "goodput_forward": 657866696,
+            "goodput_reverse": 1387639136,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              5
+            ],
+            "goodput_forward": 1320553176,
+            "goodput_reverse": 1603250248,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              6
+            ],
+            "goodput_forward": 1189338432,
+            "goodput_reverse": 1310457200,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              9
+            ],
+            "goodput_forward": 1392490824,
+            "goodput_reverse": 1501859248,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              10
+            ],
+            "goodput_forward": 1155623160,
+            "goodput_reverse": 802774280,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              8
+            ],
+            "goodput_forward": 804997648,
+            "goodput_reverse": 1226785424,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              9
+            ],
+            "goodput_forward": 1083175168,
+            "goodput_reverse": 1577782272,
+            "transport": "direct"
+          }
+        ],
+        "index": 86,
+        "time": 86000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              3
+            ],
+            "goodput_forward": 781486232,
+            "goodput_reverse": 1064555552,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              6
+            ],
+            "goodput_forward": 1237158528,
+            "goodput_reverse": 988352608,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              5
+            ],
+            "goodput_forward": 1054140640,
+            "goodput_reverse": 1730650696,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              8
+            ],
+            "goodput_forward": 1271722008,
+            "goodput_reverse": 1403128432,
+            "transport": "direct"
+          }
+        ],
+        "index": 87,
+        "time": 87000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              8
+            ],
+            "goodput_forward": 1349143552,
+            "goodput_reverse": 1453345120,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              4
+            ],
+            "goodput_forward": 688983888,
+            "goodput_reverse": 1240542104,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              8
+            ],
+            "goodput_forward": 1128741800,
+            "goodput_reverse": 899469592,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              8
+            ],
+            "goodput_forward": 803031808,
+            "goodput_reverse": 1762211232,
+            "transport": "direct"
+          }
+        ],
+        "index": 88,
+        "time": 88000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              8
+            ],
+            "goodput_forward": 962794400,
+            "goodput_reverse": 901318976,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              8
+            ],
+            "goodput_forward": 1123982728,
+            "goodput_reverse": 874347944,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              10
+            ],
+            "goodput_forward": 1151658728,
+            "goodput_reverse": 862309480,
+            "transport": "direct"
+          }
+        ],
+        "index": 89,
+        "time": 89000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              3
+            ],
+            "goodput_forward": 654778728,
+            "goodput_reverse": 1250763680,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              5
+            ],
+            "goodput_forward": 909532336,
+            "goodput_reverse": 760216048,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              8
+            ],
+            "goodput_forward": 543177872,
+            "goodput_reverse": 882697224,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              6
+            ],
+            "goodput_forward": 896149704,
+            "goodput_reverse": 1237543440,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              7
+            ],
+            "goodput_forward": 571812064,
+            "goodput_reverse": 935942184,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              9
+            ],
+            "goodput_forward": 907751192,
+            "goodput_reverse": 1911645040,
+            "transport": "direct"
+          }
+        ],
+        "index": 90,
+        "time": 90000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              9
+            ],
+            "goodput_forward": 561839568,
+            "goodput_reverse": 1236987648,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              9
+            ],
+            "goodput_forward": 1203535584,
+            "goodput_reverse": 1150976848,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              5
+            ],
+            "goodput_forward": 572195616,
+            "goodput_reverse": 1010658368,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              6
+            ],
+            "goodput_forward": 1034900312,
+            "goodput_reverse": 1890699704,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              10
+            ],
+            "goodput_forward": 874397464,
+            "goodput_reverse": 1627859552,
+            "transport": "direct"
+          }
+        ],
+        "index": 91,
+        "time": 91000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              3
+            ],
+            "goodput_forward": 1167813072,
+            "goodput_reverse": 1533966088,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              3
+            ],
+            "goodput_forward": 537824248,
+            "goodput_reverse": 1230551328,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              10
+            ],
+            "goodput_forward": 1257208480,
+            "goodput_reverse": 1223479792,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              9
+            ],
+            "goodput_forward": 672860600,
+            "goodput_reverse": 1212732200,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              8
+            ],
+            "goodput_forward": 1133631336,
+            "goodput_reverse": 701803912,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              9,
+              10
+            ],
+            "goodput_forward": 756328296,
+            "goodput_reverse": 1148741896,
+            "transport": "direct"
+          }
+        ],
+        "index": 92,
+        "time": 92000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              3
+            ],
+            "goodput_forward": 1274814720,
+            "goodput_reverse": 1315363880,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              7
+            ],
+            "goodput_forward": 601132296,
+            "goodput_reverse": 1595967488,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              10
+            ],
+            "goodput_forward": 579988344,
+            "goodput_reverse": 1460131424,
+            "transport": "direct"
+          }
+        ],
+        "index": 93,
+        "time": 93000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              8
+            ],
+            "goodput_forward": 495604472,
+            "goodput_reverse": 1563876288,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              7
+            ],
+            "goodput_forward": 509613720,
+            "goodput_reverse": 1603727992,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              9
+            ],
+            "goodput_forward": 1329555800,
+            "goodput_reverse": 1768795136,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              5
+            ],
+            "goodput_forward": 1048331504,
+            "goodput_reverse": 910595976,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              5
+            ],
+            "goodput_forward": 1123463432,
+            "goodput_reverse": 1275884136,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              7
+            ],
+            "goodput_forward": 885068208,
+            "goodput_reverse": 1830950776,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              9
+            ],
+            "goodput_forward": 595473952,
+            "goodput_reverse": 1313886896,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              8
+            ],
+            "goodput_forward": 870155456,
+            "goodput_reverse": 1479408968,
+            "transport": "direct"
+          }
+        ],
+        "index": 94,
+        "time": 94000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              2
+            ],
+            "goodput_forward": 684029872,
+            "goodput_reverse": 963203848,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              5
+            ],
+            "goodput_forward": 953788416,
+            "goodput_reverse": 1277414856,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              10
+            ],
+            "goodput_forward": 1249125024,
+            "goodput_reverse": 1194526128,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              9
+            ],
+            "goodput_forward": 613297376,
+            "goodput_reverse": 1589250232,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              10
+            ],
+            "goodput_forward": 1441359952,
+            "goodput_reverse": 1411929800,
+            "transport": "direct"
+          }
+        ],
+        "index": 95,
+        "time": 95000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              9
+            ],
+            "goodput_forward": 1107247488,
+            "goodput_reverse": 1856860736,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              3
+            ],
+            "goodput_forward": 882786344,
+            "goodput_reverse": 1714337888,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              6
+            ],
+            "goodput_forward": 1187184760,
+            "goodput_reverse": 1949899568,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              9
+            ],
+            "goodput_forward": 877548024,
+            "goodput_reverse": 1308080800,
+            "transport": "direct"
+          }
+        ],
+        "index": 96,
+        "time": 96000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              7
+            ],
+            "goodput_forward": 659536360,
+            "goodput_reverse": 1648867552,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              10
+            ],
+            "goodput_forward": 1210213600,
+            "goodput_reverse": 1244851952,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              10
+            ],
+            "goodput_forward": 536280960,
+            "goodput_reverse": 1884046392,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              6
+            ],
+            "goodput_forward": 1351378424,
+            "goodput_reverse": 1575782560,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              6
+            ],
+            "goodput_forward": 1307180912,
+            "goodput_reverse": 1711511816,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              9
+            ],
+            "goodput_forward": 1279276640,
+            "goodput_reverse": 948211232,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              9,
+              10
+            ],
+            "goodput_forward": 1411800376,
+            "goodput_reverse": 1439347344,
+            "transport": "direct"
+          }
+        ],
+        "index": 97,
+        "time": 97000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              9,
+              10
+            ],
+            "goodput_forward": 843660184,
+            "goodput_reverse": 1379094176,
+            "transport": "direct"
+          }
+        ],
+        "index": 98,
+        "time": 98000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              7
+            ],
+            "goodput_forward": 1034532992,
+            "goodput_reverse": 898053232,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              7
+            ],
+            "goodput_forward": 963541056,
+            "goodput_reverse": 774102872,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              7
+            ],
+            "goodput_forward": 1099660224,
+            "goodput_reverse": 1007905936,
+            "transport": "direct"
+          }
+        ],
+        "index": 99,
+        "time": 99000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              3
+            ],
+            "goodput_forward": 1463671640,
+            "goodput_reverse": 1273980408,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              6
+            ],
+            "goodput_forward": 545718496,
+            "goodput_reverse": 1303953808,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              8
+            ],
+            "goodput_forward": 797867984,
+            "goodput_reverse": 928820720,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              6
+            ],
+            "goodput_forward": 1233066456,
+            "goodput_reverse": 1145721864,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              8
+            ],
+            "goodput_forward": 823390536,
+            "goodput_reverse": 1132682640,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              10
+            ],
+            "goodput_forward": 515768536,
+            "goodput_reverse": 684546312,
+            "transport": "direct"
+          }
+        ],
+        "index": 100,
+        "time": 100000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              9
+            ],
+            "goodput_forward": 963872688,
+            "goodput_reverse": 993361600,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              10
+            ],
+            "goodput_forward": 531931912,
+            "goodput_reverse": 1786278568,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              4
+            ],
+            "goodput_forward": 1042861584,
+            "goodput_reverse": 1535566968,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              8
+            ],
+            "goodput_forward": 1446730152,
+            "goodput_reverse": 900138648,
+            "transport": "direct"
+          }
+        ],
+        "index": 101,
+        "time": 101000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              5
+            ],
+            "goodput_forward": 565547448,
+            "goodput_reverse": 1784188328,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              4
+            ],
+            "goodput_forward": 1248571000,
+            "goodput_reverse": 1848290504,
+            "transport": "direct"
+          }
+        ],
+        "index": 102,
+        "time": 102000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              5
+            ],
+            "goodput_forward": 1418211696,
+            "goodput_reverse": 851887288,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              10
+            ],
+            "goodput_forward": 1443802768,
+            "goodput_reverse": 1264940416,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              7
+            ],
+            "goodput_forward": 884644896,
+            "goodput_reverse": 1274178712,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              9
+            ],
+            "goodput_forward": 1074078752,
+            "goodput_reverse": 763332520,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              9
+            ],
+            "goodput_forward": 1404345648,
+            "goodput_reverse": 1690371864,
+            "transport": "direct"
+          }
+        ],
+        "index": 103,
+        "time": 103000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              8
+            ],
+            "goodput_forward": 541749520,
+            "goodput_reverse": 1108550440,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              6
+            ],
+            "goodput_forward": 544613968,
+            "goodput_reverse": 1528947312,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              9
+            ],
+            "goodput_forward": 930826656,
+            "goodput_reverse": 1426417496,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              10
+            ],
+            "goodput_forward": 661035800,
+            "goodput_reverse": 1676296040,
+            "transport": "direct"
+          }
+        ],
+        "index": 104,
+        "time": 104000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              7
+            ],
+            "goodput_forward": 1353932504,
+            "goodput_reverse": 1742090128,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              7
+            ],
+            "goodput_forward": 1248947328,
+            "goodput_reverse": 1241502552,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              8
+            ],
+            "goodput_forward": 711685712,
+            "goodput_reverse": 1558987944,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              10
+            ],
+            "goodput_forward": 1207419824,
+            "goodput_reverse": 1504603888,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              9
+            ],
+            "goodput_forward": 784906960,
+            "goodput_reverse": 1414389584,
+            "transport": "direct"
+          }
+        ],
+        "index": 105,
+        "time": 105000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              7
+            ],
+            "goodput_forward": 809779280,
+            "goodput_reverse": 1817897752,
+            "transport": "direct"
+          }
+        ],
+        "index": 106,
+        "time": 106000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              5
+            ],
+            "goodput_forward": 952000704,
+            "goodput_reverse": 1479051128,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              8
+            ],
+            "goodput_forward": 615997424,
+            "goodput_reverse": 1104647488,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              7
+            ],
+            "goodput_forward": 1265024928,
+            "goodput_reverse": 1306514008,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              10
+            ],
+            "goodput_forward": 841578616,
+            "goodput_reverse": 1320959680,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              9,
+              10
+            ],
+            "goodput_forward": 1103921288,
+            "goodput_reverse": 765199360,
+            "transport": "direct"
+          }
+        ],
+        "index": 107,
+        "time": 107000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              3
+            ],
+            "goodput_forward": 1041228288,
+            "goodput_reverse": 725816720,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              9
+            ],
+            "goodput_forward": 1143340384,
+            "goodput_reverse": 833369664,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              8
+            ],
+            "goodput_forward": 1038668640,
+            "goodput_reverse": 1806632344,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              10
+            ],
+            "goodput_forward": 759530016,
+            "goodput_reverse": 1634740144,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              7
+            ],
+            "goodput_forward": 1194744608,
+            "goodput_reverse": 654165232,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              10
+            ],
+            "goodput_forward": 1009571976,
+            "goodput_reverse": 804191192,
+            "transport": "direct"
+          }
+        ],
+        "index": 108,
+        "time": 108000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              4
+            ],
+            "goodput_forward": 745505536,
+            "goodput_reverse": 1219140736,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              5
+            ],
+            "goodput_forward": 1127282800,
+            "goodput_reverse": 929823296,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              8
+            ],
+            "goodput_forward": 1049969640,
+            "goodput_reverse": 889588992,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              10
+            ],
+            "goodput_forward": 1404394272,
+            "goodput_reverse": 839568952,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              7
+            ],
+            "goodput_forward": 1171066656,
+            "goodput_reverse": 1445207216,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              10
+            ],
+            "goodput_forward": 951163000,
+            "goodput_reverse": 741360168,
+            "transport": "direct"
+          }
+        ],
+        "index": 109,
+        "time": 109000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              4
+            ],
+            "goodput_forward": 1117530080,
+            "goodput_reverse": 1329502336,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              4
+            ],
+            "goodput_forward": 1287580568,
+            "goodput_reverse": 1279130248,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              8
+            ],
+            "goodput_forward": 1350049208,
+            "goodput_reverse": 1753404016,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              7
+            ],
+            "goodput_forward": 1059553992,
+            "goodput_reverse": 898917232,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              10
+            ],
+            "goodput_forward": 1126712976,
+            "goodput_reverse": 675082384,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              9
+            ],
+            "goodput_forward": 1052851960,
+            "goodput_reverse": 843670520,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              8
+            ],
+            "goodput_forward": 1112544208,
+            "goodput_reverse": 1154183840,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              9
+            ],
+            "goodput_forward": 540589688,
+            "goodput_reverse": 1119504296,
+            "transport": "direct"
+          }
+        ],
+        "index": 110,
+        "time": 110000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              7
+            ],
+            "goodput_forward": 811563416,
+            "goodput_reverse": 805598240,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              4
+            ],
+            "goodput_forward": 629324256,
+            "goodput_reverse": 1473526752,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              9
+            ],
+            "goodput_forward": 987414624,
+            "goodput_reverse": 1924814096,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              4
+            ],
+            "goodput_forward": 560827808,
+            "goodput_reverse": 1428592912,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              6
+            ],
+            "goodput_forward": 1213740936,
+            "goodput_reverse": 1410594424,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              10
+            ],
+            "goodput_forward": 714078360,
+            "goodput_reverse": 800147840,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              9
+            ],
+            "goodput_forward": 632322464,
+            "goodput_reverse": 845420320,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              9
+            ],
+            "goodput_forward": 950423728,
+            "goodput_reverse": 1688690672,
+            "transport": "direct"
+          }
+        ],
+        "index": 111,
+        "time": 111000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              3
+            ],
+            "goodput_forward": 1448410608,
+            "goodput_reverse": 841355656,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              7
+            ],
+            "goodput_forward": 715486112,
+            "goodput_reverse": 753966672,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              9,
+              10
+            ],
+            "goodput_forward": 1285558776,
+            "goodput_reverse": 1295443976,
+            "transport": "direct"
+          }
+        ],
+        "index": 112,
+        "time": 112000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              2
+            ],
+            "goodput_forward": 812218032,
+            "goodput_reverse": 701508872,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              6
+            ],
+            "goodput_forward": 1029585040,
+            "goodput_reverse": 1723159872,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              9
+            ],
+            "goodput_forward": 955740896,
+            "goodput_reverse": 1107271416,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              10
+            ],
+            "goodput_forward": 716265888,
+            "goodput_reverse": 1419431048,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              9
+            ],
+            "goodput_forward": 820595096,
+            "goodput_reverse": 1110623432,
+            "transport": "direct"
+          }
+        ],
+        "index": 113,
+        "time": 113000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              9
+            ],
+            "goodput_forward": 662495920,
+            "goodput_reverse": 1193671832,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              9
+            ],
+            "goodput_forward": 801665728,
+            "goodput_reverse": 1907565896,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              5
+            ],
+            "goodput_forward": 1344661064,
+            "goodput_reverse": 1266447200,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              6
+            ],
+            "goodput_forward": 830088544,
+            "goodput_reverse": 1739858376,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              10
+            ],
+            "goodput_forward": 800333640,
+            "goodput_reverse": 1703338960,
+            "transport": "direct"
+          }
+        ],
+        "index": 114,
+        "time": 114000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              5
+            ],
+            "goodput_forward": 981810512,
+            "goodput_reverse": 934639304,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              4
+            ],
+            "goodput_forward": 589842568,
+            "goodput_reverse": 981865496,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              5
+            ],
+            "goodput_forward": 928860536,
+            "goodput_reverse": 1259678696,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              8
+            ],
+            "goodput_forward": 1109164576,
+            "goodput_reverse": 820773072,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              4,
+              9
+            ],
+            "goodput_forward": 1115051096,
+            "goodput_reverse": 800126288,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              10
+            ],
+            "goodput_forward": 1054828816,
+            "goodput_reverse": 1549662336,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              9
+            ],
+            "goodput_forward": 1412675880,
+            "goodput_reverse": 1755186624,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              8,
+              10
+            ],
+            "goodput_forward": 904227536,
+            "goodput_reverse": 1519885808,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              9,
+              10
+            ],
+            "goodput_forward": 633126240,
+            "goodput_reverse": 1463383128,
+            "transport": "direct"
+          }
+        ],
+        "index": 115,
+        "time": 115000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              2
+            ],
+            "goodput_forward": 1040398576,
+            "goodput_reverse": 1332927344,
+            "transport": "direct"
+          }
+        ],
+        "index": 116,
+        "time": 116000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              3
+            ],
+            "goodput_forward": 1410122816,
+            "goodput_reverse": 1800806112,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              4
+            ],
+            "goodput_forward": 912383032,
+            "goodput_reverse": 920057968,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              7
+            ],
+            "goodput_forward": 1295834600,
+            "goodput_reverse": 792091128,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              7
+            ],
+            "goodput_forward": 525880264,
+            "goodput_reverse": 1300248176,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              8
+            ],
+            "goodput_forward": 1271711136,
+            "goodput_reverse": 1057894376,
+            "transport": "direct"
+          }
+        ],
+        "index": 117,
+        "time": 117000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              10
+            ],
+            "goodput_forward": 1060509400,
+            "goodput_reverse": 811845288,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              3,
+              4
+            ],
+            "goodput_forward": 1003803912,
+            "goodput_reverse": 1718649408,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              6,
+              10
+            ],
+            "goodput_forward": 489946680,
+            "goodput_reverse": 1518977888,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              7,
+              10
+            ],
+            "goodput_forward": 563129168,
+            "goodput_reverse": 1816437064,
+            "transport": "direct"
+          }
+        ],
+        "index": 118,
+        "time": 118000
+      },
+      {
+        "edges": [
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              2
+            ],
+            "goodput_forward": 757463488,
+            "goodput_reverse": 1925050080,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              1,
+              7
+            ],
+            "goodput_forward": 800058448,
+            "goodput_reverse": 1133160920,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              2,
+              3
+            ],
+            "goodput_forward": 1437438912,
+            "goodput_reverse": 1575751464,
+            "transport": "direct"
+          },
+          {
+            "duration": 1000,
+            "endpoints": [
+              5,
+              8
+            ],
+            "goodput_forward": 875483032,
+            "goodput_reverse": 1790526024,
+            "transport": "direct"
+          }
+        ],
+        "index": 119,
+        "time": 119000
+      }
+    ],
+    "generator": {
+      "b_ref_forward_bytes": 101661258,
+      "b_ref_reverse_bytes": 135554034,
+      "capacity_distribution": "uniform",
+      "capacity_high": 1.8,
+      "capacity_low": 0.6,
+      "capacity_seed": 21,
+      "credit_unit": "bytes per direction per one-second contact",
+      "er_name": "er_gnp",
+      "er_trace_id": "0d3897c7a86ba7ee2cf5e0a6ace4914da465c168c10eb9602a06ca65cfe84faa",
+      "er_version": 1,
+      "n": 10,
+      "name": "er_credit_trace",
+      "num_frames": 120,
+      "p": 0.1,
+      "seed": 21,
+      "trace_id": "ce7f7b4065e58adb24a8c7d0ce6e2c9ed576c390e7790337818f216c92b8c6a6",
+      "version": 1
+    },
+    "goodput_unit": "bps",
+    "peers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "time_unit": "ms",
+    "trace_schema_version": 1
+  },
+  "training_rng": "per_peer_episode"
+}

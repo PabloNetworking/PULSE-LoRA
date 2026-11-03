@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Environments
+venv/
+.venv/
+.env
+
+# Datasets and models (see data/README.md)
+data/*
+!data/README.md
+models/
+.cache/
+
+# Run outputs
+exp/
+logs/
+wandb/
+*.log
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.npy
+*.npz
+
+# Editors and OS files
+.vscode/
+.idea/
+*.swp
+.DS_Store
